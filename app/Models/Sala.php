@@ -8,4 +8,8 @@ class Sala extends Model
 {
     protected $fillable = ['nombre', 'descripcion'];
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'sala_user');
+    }
 }

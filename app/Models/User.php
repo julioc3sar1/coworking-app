@@ -46,4 +46,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function salas()
+    {
+        return $this->belongsToMany(Sala::class, 'sala_user');
+    }
 }
