@@ -25,8 +25,18 @@
                     </div>
                     <div class="col-auto ms-auto">
                         <button class="btn" data-bs-toggle="modal" data-bs-target="#new-room">Nueva sala</button>
-                        <x-bootstrap.modal id="new-room" title="Sala">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque harum nemo pariatur odio id consectetur voluptatem! Officiis, corporis ut reiciendis nobis esse deserunt quod, corrupti necessitatibus assumenda laboriosam nesciunt voluptate.
+                        <x-bootstrap.modal id="new-room" title="Sala" submit-btn-text="Guardar" form-id="room-form">
+                            <form id="room-form" method="POST" action="{{ route('rooms.store') }}">
+                                @csrf
+                                <div class="form-group mb-3">
+                                    <label for="name">Nombre:</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Descripcion:</label>
+                                    <textarea type="text" class="form-control" id="name" name="description"></textarea>
+                                </div>
+                            </form>
                         </x-bootstrap.modal>
                     </div>
                 </div>

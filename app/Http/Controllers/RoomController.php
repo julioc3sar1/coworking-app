@@ -19,4 +19,15 @@ class RoomController extends Controller
         $room->delete();
         return redirect()->route('rooms')->with('success', 'Room deleted successfully');
     }
+
+    public function store(Request $request){
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description'=>'required|string|max:255'
+        ]);
+
+        Sala::create($validatedData);
+
+        return redirect()->route('rooms')->with('success', 'Room created successfully.');
+    }
 }
