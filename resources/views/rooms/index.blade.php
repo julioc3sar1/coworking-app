@@ -7,6 +7,14 @@
 
     <div class="container">
         <div class="row">
+            @if (session('success'))
+            <div class="col-12">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Santo guacamole!</strong> {{ session('alertMsg') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            @endif
             <div class="col-12 mb-4">
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
@@ -27,8 +35,15 @@
                   <h5 class="card-title">{{$room->name}}</h5>
                   <p class="card-text">{{$room->description}}</p>
                     @role('admin')
-                    <a href="#" class="btn btn-warning">Editar</a>
-                    <a href="#" class="btn btn-light">Eliminar</a>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="btn btn-warning">Editar</a>
+                        <form action="{{ route('rooms.destroy', $room) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-light" type="submit">Eliminar</a>
+                        </form>   
+                    </div>
+        
                     @else
                     <a href="#" class="btn btn-primary">Reservar</a>
                     @endrole
