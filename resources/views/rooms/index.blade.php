@@ -28,29 +28,32 @@
                     </div>
                 </div>
             </div>
-            @foreach ($rooms as $room)
+            @forelse ($rooms as $room)
             <div class="col-sm-6 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">{{$room->name}}</h5>
-                  <p class="card-text">{{$room->description}}</p>
-                    @role('admin')
-                    <div class="d-flex gap-2">
-                        <a href="#" class="btn btn-warning">Editar</a>
-                        <form action="{{ route('rooms.destroy', $room) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-light" type="submit">Eliminar</a>
-                        </form>   
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">{{$room->name}}</h5>
+                    <p class="card-text">{{$room->description}}</p>
+                        @role('admin')
+                        <div class="d-flex gap-2">
+                            <a href="#" class="btn btn-warning">Editar</a>
+                            <form action="{{ route('rooms.destroy', $room) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-light" type="submit">Eliminar</a>
+                            </form>
+                        </div>
+                        @else
+                        <a href="#" class="btn btn-primary">Reservar</a>
+                        @endrole
                     </div>
-        
-                    @else
-                    <a href="#" class="btn btn-primary">Reservar</a>
-                    @endrole
                 </div>
-              </div>
             </div>
-            @endforeach
+            @empty
+                <div class="text-center">
+                    No hay salas creadas, crea una nueva
+                </div>
+            @endforelse
         </div>
     </div>
 </x-app-layout>
