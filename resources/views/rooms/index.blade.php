@@ -7,9 +7,17 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, eum quidem. Facilis distinctio reprehenderit reiciendis sapiente eligendi laboriosam! Aut velit doloremque voluptas ipsam nihil libero quo possimus aperiam exercitationem voluptatem?
+            @foreach ($rooms as $room)
+            <div class="col-sm-6 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{$room->name}}</h5>
+                  <p class="card-text">{{$room->description}}</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
             </div>
+            @endforeach
         </div>
     </div>
 </x-app-layout>

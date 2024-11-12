@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Sala;
 
 class RoomController extends Controller
 {
     //
     public function show(): View
     {
-        return view('rooms.index');
+        $rooms = Sala::all();        
+        return view('rooms.index', compact('rooms'));
     }
 }
