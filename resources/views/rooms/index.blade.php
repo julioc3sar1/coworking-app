@@ -4,4 +4,12 @@
             {{ __('Salas') }}
         </h2>
     </x-slot>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, eum quidem. Facilis distinctio reprehenderit reiciendis sapiente eligendi laboriosam! Aut velit doloremque voluptas ipsam nihil libero quo possimus aperiam exercitationem voluptatem?
+            </div>
+        </div>
+    </div>
 </x-app-layout>
