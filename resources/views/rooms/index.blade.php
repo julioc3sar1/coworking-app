@@ -24,7 +24,10 @@
                       <input type="text" id="inputSearch" class="form-control" aria-describedby="searchField">
                     </div>
                     <div class="col-auto ms-auto">
-                        <button class="btn">Nueva sala</button>
+                        <button class="btn" data-bs-toggle="modal" data-bs-target="#new-room">Nueva sala</button>
+                        <x-bootstrap.modal id="new-room" title="Sala">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque harum nemo pariatur odio id consectetur voluptatem! Officiis, corporis ut reiciendis nobis esse deserunt quod, corrupti necessitatibus assumenda laboriosam nesciunt voluptate.
+                        </x-bootstrap.modal>
                     </div>
                 </div>
             </div>
