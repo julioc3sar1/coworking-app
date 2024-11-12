@@ -8,7 +8,11 @@ export default defineConfig({
                 'resources/scss/app.scss',
                 'resources/js/app.js',
             ],
-            refresh: true,
+            refresh: [
+                'resources/views/**',
+                'app/View/Components/**',
+                'resources/scss/**'
+            ],
         }),
     ],
 });
