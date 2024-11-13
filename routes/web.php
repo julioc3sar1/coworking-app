@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/rooms/{room}', [RoomController::class, 'update'])->name('rooms.update');
     Route::delete('/rooms/{room}', [RoomController::class, 'destroy'])->name('rooms.destroy');
 
-    Route::get('/bookings', [BookingController::class, 'show'])->name('bookings');
+    Route::get('/bookings/{id?}', [BookingController::class, 'show'])->name('bookings');
     Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
     Route::put('/bookings/{id}', [BookingController::class, 'updateStatus'])->name('bookings.status');
 });

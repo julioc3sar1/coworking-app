@@ -11,16 +11,23 @@ use Illuminate\Support\Facades\Auth;
 class BookingController extends Controller
 {
     //
-    public function show():View{
+    public function show(Request $request):View{
         $user = Auth::user();
         $rooms= Room::all();
-        if($user->hasRole('admin')){
-            $bookings = Booking::with('user', 'room')->get();
-        }else{
-            $bookings = Booking::with('user', 'room')->where('user_id',$user->id)->get();
+        $roomId = $request->id;
+        $bookings = Booking::with('user', 'room');
+    
+        if(!$user->hasRole('admin')){
+            $bookings->where('user_id',$user->id);
         }
 
-        return view('bookings.index', compact(['bookings', 'rooms']));
+        if($request->id){
+            $bookings->where('room_id',$roomId);
+        }
+
+        $bookings = $bookings->get();
+
+        return view('bookings.index', compact(['bookings', 'rooms', 'roomId']));
     }
 
     public function store(Request $request){
@@ -35,7 +42,6 @@ class BookingController extends Controller
             'start_date'=>'required|date',
             'end_date'=>'required|date|after_or_equal:start_date'
         ]);
-
 
         Booking::create($validatedData);
 

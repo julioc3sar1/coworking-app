@@ -18,10 +18,17 @@
             <div class="col-12 mb-4">
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
-                      <label for="inputPassword6" class="col-form-label">Buscar reserva</label>
+                      <label for="inputPassword6" class="col-form-label">Filtrar</label>
                     </div>
                     <div class="col-auto">
-                      <input type="text" id="inputSearch" class="form-control" aria-describedby="searchField">
+                        <div class="form-group">
+                            <select class="form-select" aria-label="Sala" name="room_id" required x-on:change="window.location.href = '{{url('bookings')}}/'+$event.target.value">
+                                <option value="">Selecciona una sala</option>
+                                @foreach ($rooms as $room)
+                                <option value="{{$room->id}}" {{ $room->id==$roomId ? 'selected' : '' }}>{{$room->name}}</option>
+                                @endforeach
+                              </select>
+                        </div>
                     </div>
                     <div class="col-auto ms-auto">
                         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#new-booking">Nueva reserva</button>
