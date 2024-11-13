@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Sala;
+use App\Models\Room;
 
 class RoomSeeder extends Seeder
 {
@@ -13,6 +13,6 @@ class RoomSeeder extends Seeder
      */
     public function run(): void
     {
-        Sala::factory()->count(5)->create();
+        Room::factory()->count(5)->create();
     }
 }

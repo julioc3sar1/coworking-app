@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Sala;
+use App\Models\Room;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -16,7 +16,7 @@ class RoomFactory extends Factory
      * @return array<string, mixed>
      */
 
-    protected $model = Sala::class;
+    protected $model = Room::class;
     
     public function definition(): array
     {

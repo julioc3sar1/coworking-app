@@ -47,8 +47,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function salas()
+    public function rooms()
     {
-        return $this->belongsToMany(Sala::class, 'sala_user');
+        return $this->belongsToMany(Room::class, 'room_user');
     }
 }

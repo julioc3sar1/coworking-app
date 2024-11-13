@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,6 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/rooms', [RoomController::class, 'store'])->name('rooms.store');
     Route::put('/rooms/{room}', [RoomController::class, 'update'])->name('rooms.update');
     Route::delete('/rooms/{room}', [RoomController::class, 'destroy'])->name('rooms.destroy');
+
+    Route::get('/bookings', [BookingController::class, 'show'])->name('bookings');
 });
 
 require __DIR__.'/auth.php';

@@ -9,7 +9,7 @@ use Database\Factories\BookingFactory;
 class Booking extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'sala_id', 'start_date', 'end_date'];
+    protected $fillable = ['user_id', 'room_id', 'start_date', 'end_date'];
 
     protected static function newFactory()
     {
@@ -17,7 +17,7 @@ class Booking extends Model
     }
 
     public function room(){
-        return $this->belongsTo(Sala::class);
+        return $this->belongsTo(Room::class);
     }
 
     public function user(){

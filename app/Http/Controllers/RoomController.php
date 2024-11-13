@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use App\Models\Sala;
+use App\Models\Room;
 
 class RoomController extends Controller
 {
     //
     public function show(): View
     {
-        $rooms = Sala::all();
+        $rooms = Room::all();
         return view('rooms.index', compact('rooms'));
     }
 
-    public function destroy(Sala $room) {
+    public function destroy(Room $room) {
         $room->delete();
         return redirect()->route('rooms')->with('success', 'Room deleted successfully');
     }
@@ -26,12 +26,12 @@ class RoomController extends Controller
             'description'=>'required|string|max:255'
         ]);
 
-        Sala::create($validatedData);
+        Room::create($validatedData);
 
         return redirect()->route('rooms')->with('success', 'Room created successfully.');
     }
 
-    public function update(Request $request, Sala $room)
+    public function update(Request $request, Room $room)
     {
         $request->validate([
             'name' => 'required|string|max:255',

@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Sala;
+use App\Models\Room;
 use App\Models\User;
 use App\Models\Booking;
 
