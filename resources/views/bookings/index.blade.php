@@ -6,6 +6,15 @@
     </x-slot>
 
     <div class="container" x-data="{ room: '', isEditing:false }">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="row">
             @if (session('success'))
             <div class="col-12">
