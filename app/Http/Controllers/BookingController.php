@@ -34,4 +34,17 @@ class BookingController extends Controller
 
         return redirect()->route('bookings')->with('success', 'Booking created successfully.');
     }
+
+    public function updateStatus(Request $request, String $id){
+        $request->validate([
+            'status' => 'required|in:pending,accepted,rejected',
+        ]);
+
+        $booking = Booking::find($id);
+        $booking->update([
+            'status' => $request->status
+        ]);
+
+        return redirect()->route('bookings')->with('success', 'Booking updated successfully.');
+    }
 }

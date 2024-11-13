@@ -36,7 +36,6 @@
                                         <option value="{{$room->id}}">{{$room->name}}</option>
                                         @endforeach
                                       </select>
-                                    {{-- <input type="text" class="form-control" id="name" name="name" required x-bind:value="room.name"> --}}
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Hora:</label>
@@ -56,8 +55,6 @@
                         <p class=" mb-0">
                             <span class="fw-bold">Fecha: </span>
                             {{ date('d M h:i A', strtotime($booking->start_date)) }}
-                            {{-- <span class="fw-bold">Hasta: </span> --}}
-                            {{-- {{ date('d/m/Y', strtotime($booking->end_date)) }} --}}
                         </p>
                         <div class="mb-0 d-flex justify-content-between">
                             <div>
@@ -72,20 +69,22 @@
                                     @endif
                                 </span>
                             </div>
-                            <button class="underline">Cambiar status</button>
+                            <button class="underline" data-bs-target="#update-status-{{$loop->index}}" data-bs-toggle="modal">Cambiar status</button>
+                            <x-bootstrap.modal id="update-status-{{$loop->index}}" title="Cambiar status" submit-btn-text="Guardar" form-id="status-form-{{$loop->index}}">
+                                <form id="status-form-{{$loop->index}}" method="POST" action="{{route('bookings.status',$booking)}}">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="form-group mb-3">
+                                        <label for="name">Status:</label>
+                                        <select class="form-select" aria-label="Sala" name="status" required>
+                                            <option value="pending">Pendiente</option>
+                                            <option value="accepted">Aceptada</option>
+                                            <option value="rejected">Rechazada</option>
+                                          </select>
+                                    </div>
+                                </form>
+                            </x-bootstrap.modal>
                         </div>
-                        {{-- @role('admin')
-                        <div class="d-flex gap-2">
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#new-room" x-on:click="room=@js($room); isEditing = true">Editar</a>
-                            <form action="{{ route('rooms.destroy', $room) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-light" type="submit">Eliminar</a>
-                            </form>
-                        </div>
-                        @else
-                        <a href="#" class="btn btn-primary">Reservar</a>
-                        @endrole --}}
                     </div>
                 </div>
             </div>
