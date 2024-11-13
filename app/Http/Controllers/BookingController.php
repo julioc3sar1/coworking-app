@@ -6,13 +6,20 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Booking;
 use App\Models\Room;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
     //
     public function show():View{
+        $user = Auth::user();
         $rooms= Room::all();
-        $bookings = Booking::with('user', 'room')->get();
+        if($user->hasRole('admin')){
+            $bookings = Booking::with('user', 'room')->get();
+        }else{
+            $bookings = Booking::with('user', 'room')->where('user_id',$user->id)->get();
+        }
+
         return view('bookings.index', compact(['bookings', 'rooms']));
     }
 
