@@ -20,4 +20,8 @@ class Sala extends Model
     {
         return $this->belongsToMany(User::class, 'sala_user');
     }
+
+    public function bookings(){
+        return $this->belongsToMany(Booking::class);
+    }
 }
