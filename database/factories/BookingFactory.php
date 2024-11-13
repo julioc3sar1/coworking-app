@@ -24,6 +24,7 @@ class BookingFactory extends Factory
         return [
             'user_id' => User::factory(),
             'room_id' => Room::factory(),
+            'status' => 'pending',
             'start_date' => $this->faker->dateTimeBetween('-1 month', '+1 month'),
             'end_date' => $this->faker->dateTimeBetween('+1 day', '+1 week'),
         ];
