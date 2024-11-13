@@ -60,7 +60,7 @@
                             </form>
                         </div>
                         @else
-                        <a href="#" class="btn btn-primary">Reservar</a>
+                        <a href="{{route('bookings')}}" class="btn btn-primary">Reservar</a>
                         @endrole
                     </div>
                 </div>
