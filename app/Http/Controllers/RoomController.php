@@ -11,7 +11,7 @@ class RoomController extends Controller
     //
     public function show(): View
     {
-        $rooms = Sala::all();        
+        $rooms = Sala::all();
         return view('rooms.index', compact('rooms'));
     }
 
@@ -29,5 +29,20 @@ class RoomController extends Controller
         Sala::create($validatedData);
 
         return redirect()->route('rooms')->with('success', 'Room created successfully.');
+    }
+
+    public function update(Request $request, Sala $room)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description'=>'required|string|max:255'
+        ]);
+
+        $room->name = $request->name;
+        $room->description = $request->description;
+
+        $room->update($request->all());
+
+        return redirect()->route('rooms')->with('success', 'Room updated successfully.');
     }
 }

@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="container">
+    <div class="container" x-data="{ room: '', isEditing:false }">
         <div class="row">
             @if (session('success'))
             <div class="col-12">
@@ -24,17 +24,18 @@
                       <input type="text" id="inputSearch" class="form-control" aria-describedby="searchField">
                     </div>
                     <div class="col-auto ms-auto">
-                        <button class="btn" data-bs-toggle="modal" data-bs-target="#new-room">Nueva sala</button>
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#new-room">Nueva sala</button>
                         <x-bootstrap.modal id="new-room" title="Sala" submit-btn-text="Guardar" form-id="room-form">
-                            <form id="room-form" method="POST" action="{{ route('rooms.store') }}">
+                            <form id="room-form" method="POST" x-bind:action="isEditing ? '{{url('rooms')}}/'+room.id : '{{route('rooms.store')}}'">
+                                <input type="hidden" name="_method" x-bind:value="isEditing ? 'PUT' : 'POST'">
                                 @csrf
                                 <div class="form-group mb-3">
                                     <label for="name">Nombre:</label>
-                                    <input type="text" class="form-control" id="name" name="name" required>
+                                    <input type="text" class="form-control" id="name" name="name" required x-bind:value="room.name">
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Descripcion:</label>
-                                    <textarea type="text" class="form-control" id="name" name="description"></textarea>
+                                    <textarea type="text" class="form-control" id="name" name="description" x-bind:value="room.description"></textarea>
                                 </div>
                             </form>
                         </x-bootstrap.modal>
@@ -49,7 +50,7 @@
                     <p class="card-text">{{$room->description}}</p>
                         @role('admin')
                         <div class="d-flex gap-2">
-                            <a href="#" class="btn btn-warning">Editar</a>
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#new-room" x-on:click="room=@js($room); isEditing = true">Editar</a>
                             <form action="{{ route('rooms.destroy', $room) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
