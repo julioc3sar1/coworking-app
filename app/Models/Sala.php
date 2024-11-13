@@ -18,7 +18,7 @@ class Sala extends Model
 
     public function users()
     {
-        return $this->hasMany(User::class, 'sala_user');
+        return $this->belongsToMany(User::class, 'sala_user');
     }
 
     public function bookings(){
