@@ -69,6 +69,7 @@
                                     @endif
                                 </span>
                             </div>
+                            @role('admin')
                             <button class="underline" data-bs-target="#update-status-{{$loop->index}}" data-bs-toggle="modal">Cambiar status</button>
                             <x-bootstrap.modal id="update-status-{{$loop->index}}" title="Cambiar status" submit-btn-text="Guardar" form-id="status-form-{{$loop->index}}">
                                 <form id="status-form-{{$loop->index}}" method="POST" action="{{route('bookings.status',$booking)}}">
@@ -84,6 +85,7 @@
                                     </div>
                                 </form>
                             </x-bootstrap.modal>
+                            @endrole
                         </div>
                     </div>
                 </div>
