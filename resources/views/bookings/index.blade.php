@@ -54,6 +54,10 @@
                             <span class="fw-bold">Hasta: </span>
                             {{ date('d/m/Y', strtotime($booking->end_date)) }}
                         </p>
+                        <p class="mb-0">
+                            <span class="fw-bold">Status: </span>
+                            <span class="badge rounded-pill text-bg-success">Activa</span>
+                        </p>
                         {{-- @role('admin')
                         <div class="d-flex gap-2">
                             <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#new-room" x-on:click="room=@js($room); isEditing = true">Editar</a>
