@@ -23,6 +23,7 @@
                     <div class="col-auto">
                       <input type="text" id="inputSearch" class="form-control" aria-describedby="searchField">
                     </div>
+                    @role('admin')
                     <div class="col-auto ms-auto">
                         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#new-room">Nueva sala</button>
                         <x-bootstrap.modal id="new-room" title="Sala" submit-btn-text="Guardar" form-id="room-form">
@@ -40,6 +41,7 @@
                             </form>
                         </x-bootstrap.modal>
                     </div>
+                    @endrole
                 </div>
             </div>
             @forelse ($rooms as $room)
