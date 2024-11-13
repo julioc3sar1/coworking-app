@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/rooms/{room}', [RoomController::class, 'destroy'])->name('rooms.destroy');
 
     Route::get('/bookings', [BookingController::class, 'show'])->name('bookings');
+    Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
 });
 
 require __DIR__.'/auth.php';

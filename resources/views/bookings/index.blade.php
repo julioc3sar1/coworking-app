@@ -24,18 +24,23 @@
                       <input type="text" id="inputSearch" class="form-control" aria-describedby="searchField">
                     </div>
                     <div class="col-auto ms-auto">
-                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#new-room">Nueva reserva</button>
-                        <x-bootstrap.modal id="new-room" title="Sala" submit-btn-text="Guardar" form-id="room-form">
-                            <form id="room-form" method="POST" x-bind:action="isEditing ? '{{url('rooms')}}/'+room.id : '{{route('rooms.store')}}'">
-                                <input type="hidden" name="_method" x-bind:value="isEditing ? 'PUT' : 'POST'">
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#new-booking">Nueva reserva</button>
+                        <x-bootstrap.modal id="new-booking" title="Nueva reserva" submit-btn-text="Guardar" form-id="booking-form">
+                            <form id="booking-form" method="POST" action="{{route('bookings.store')}}">
                                 @csrf
+                                <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                                 <div class="form-group mb-3">
-                                    <label for="name">Nombre:</label>
-                                    <input type="text" class="form-control" id="name" name="name" required x-bind:value="room.name">
+                                    <label for="name">Sala:</label>
+                                    <select class="form-select" aria-label="Sala" name="room_id" required>
+                                        @foreach ($rooms as $room)
+                                        <option value="{{$room->id}}">{{$room->name}}</option>
+                                        @endforeach
+                                      </select>
+                                    {{-- <input type="text" class="form-control" id="name" name="name" required x-bind:value="room.name"> --}}
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">Descripcion:</label>
-                                    <textarea type="text" class="form-control" id="name" name="description" x-bind:value="room.description"></textarea>
+                                    <label for="name">Hora:</label>
+                                    <input type="datetime-local" name="start_date" class="form-control" x-bind:min="new Date().toISOString().slice(0, 16)" required>
                                 </div>
                             </form>
                         </x-bootstrap.modal>
@@ -49,15 +54,23 @@
                         <h5 class="card-title">{{$booking->user->name}}</h5>
                         <p class="card-text mb-0"><span class="fw-bold">Sala:</span> {{$booking->room->name}}</p>
                         <p class=" mb-0">
-                            <span class="fw-bold">Desde: </span>
-                            {{ date('d/m/Y', strtotime($booking->start_date)) }}
-                            <span class="fw-bold">Hasta: </span>
-                            {{ date('d/m/Y', strtotime($booking->end_date)) }}
+                            <span class="fw-bold">Fecha: </span>
+                            {{ date('d M h:i A', strtotime($booking->start_date)) }}
+                            {{-- <span class="fw-bold">Hasta: </span> --}}
+                            {{-- {{ date('d/m/Y', strtotime($booking->end_date)) }} --}}
                         </p>
                         <div class="mb-0 d-flex justify-content-between">
                             <div>
                                 <span class="fw-bold">Status: </span>
-                                <span class="badge rounded-pill text-bg-success">Activa</span>
+                                <span @class(['badge rounded-pill','bg-success' => $booking->status==='accepted','bg-danger' => $booking->status==='rejected','bg-warning' => $booking->status==='pending'])>
+                                    @if($booking->status === 'pending')
+                                    Pendiente
+                                    @elseif($booking->status === 'accepted')
+                                    Aceptada
+                                    @else
+                                    Rechazada
+                                    @endif
+                                </span>
                             </div>
                             <button class="underline">Cambiar status</button>
                         </div>

@@ -9,7 +9,11 @@ use Database\Factories\BookingFactory;
 class Booking extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'room_id', 'start_date', 'end_date'];
+    protected $fillable = ['user_id', 'room_id', 'start_date', 'end_date', 'status'];
+
+    protected $attributes = [
+        'status' => 'pending'
+    ];
 
     protected static function newFactory()
     {
