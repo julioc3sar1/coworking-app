@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="col-auto ms-auto">
-                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#new-booking">Nueva reserva</button>
+                        <button type="button" class="btn fw-bold" data-bs-toggle="modal" data-bs-target="#new-booking">Nueva reserva</button>
                         <x-bootstrap.modal id="new-booking" title="Nueva reserva" submit-btn-text="Guardar" form-id="booking-form">
                             <form id="booking-form" method="POST" action="{{route('bookings.store')}}">
                                 @csrf
