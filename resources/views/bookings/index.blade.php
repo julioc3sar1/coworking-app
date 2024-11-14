@@ -55,7 +55,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Hora:</label>
-                                    <input type="datetime-local" name="start_date" class="form-control" x-bind:min="new Date().toISOString().slice(0, 16)" required>
+                                    <input 
+                                    type="datetime-local"
+                                    step="3600" name="start_date"
+                                    class="form-control"
+                                    x-bind:min="new Date().toISOString().slice(0, 11)+'08:00'"
+                                    x-on:change="console.log($event.target.value=$event.target.value.slice(0,14)+'00')"
+                                    required
+                                    >
                                 </div>
                             </form>
                         </x-bootstrap.modal>
