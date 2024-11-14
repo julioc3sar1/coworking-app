@@ -17,7 +17,7 @@ class RoomController extends Controller
 
     public function destroy(Room $room) {
         $room->delete();
-        return redirect()->route('rooms')->with('success', 'Room deleted successfully');
+        return redirect()->route('rooms')->with('success', 'Has borrado la sala');
     }
 
     public function store(Request $request){
@@ -28,7 +28,7 @@ class RoomController extends Controller
 
         Room::create($validatedData);
 
-        return redirect()->route('rooms')->with('success', 'Room created successfully.');
+        return redirect()->route('rooms')->with('success', 'Has creado una sala.');
     }
 
     public function update(Request $request, Room $room)
@@ -43,6 +43,6 @@ class RoomController extends Controller
 
         $room->update($request->all());
 
-        return redirect()->route('rooms')->with('success', 'Room updated successfully.');
+        return redirect()->route('rooms')->with('success', 'Has editado una sala.');
     }
 }

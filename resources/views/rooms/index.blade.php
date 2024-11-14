@@ -10,7 +10,7 @@
             @if (session('success'))
             <div class="col-12">
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Santo guacamole!</strong> {{ session('alertMsg') }}
+                    <strong>Santo guacamole!</strong> {{ session('success') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 </div>
             </div>
             @forelse ($rooms as $room)
-            <div class="col-sm-6 mb-3">
+            <div class="col-sm-6 col-xl-4 mb-3 d-grid">
                 @include('rooms.includes.room')
             </div>
             @empty
