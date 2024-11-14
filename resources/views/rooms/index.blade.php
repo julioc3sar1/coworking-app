@@ -48,7 +48,7 @@
             <div class="col-sm-6 mb-3">
                 <div class="card">
                     <div class="card-body">
-                    <h5 class="card-title">{{$room->name}}</h5>
+                    <h5 class="card-title font-mono">{{$room->name}}</h5>
                     <p class="card-text">{{$room->description}}</p>
                         @role('admin')
                         <div class="d-flex gap-2">
@@ -60,7 +60,9 @@
                             </form>
                         </div>
                         @else
-                        <a href="{{route('bookings')}}" class="btn btn-primary">Reservar</a>
+                        <div class="text-right">
+                            <a href="{{route('bookings')}}" class="btn text-primary fw-bold text-uppercase">Reservar</a>
+                        </div>
                         @endrole
                     </div>
                 </div>
