@@ -46,7 +46,7 @@ class BookingController extends Controller
 
         Booking::create($validatedData);
 
-        return redirect()->route('bookings')->with('success', 'Booking created successfully.');
+        return redirect()->route('bookings')->with('success', 'Has creado una reserva.');
     }
 
     public function updateStatus(Request $request, String $id){
@@ -59,6 +59,6 @@ class BookingController extends Controller
             'status' => $request->status
         ]);
 
-        return redirect()->route('bookings')->with('success', 'Booking updated successfully.');
+        return redirect()->route('bookings')->with('success', 'Has cambiado el estado de una reserva.');
     }
 }
