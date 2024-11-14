@@ -1,6 +1,6 @@
 <div class="card border-light">
     <div class="card-body">
-    <h5 class="card-title">{{$room->name}}</h5>
+    <h5 class="card-title text-capitalize">{{$room->name}}</h5>
     <p class="card-text text-truncate text-secondary">{{$room->description}}</p>
         @role('admin')
         <div class="d-flex gap-2 justify-content-end">
