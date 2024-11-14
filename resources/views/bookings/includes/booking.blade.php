@@ -1,15 +1,9 @@
-<div class="card">
+<div class="card border-light">
     <div class="card-body">
-        <h5 class="card-title font-mono">{{$booking->user->name}}</h5>
-        <p class="card-text mb-0"><span class="fw-bold">Sala:</span> {{$booking->room->name}}</p>
-        <p class=" mb-0">
-            <span class="fw-bold">Fecha: </span>
-            {{ date('d M h:i A', strtotime($booking->start_date)) }}
-        </p>
-        <div class="mb-0 d-flex justify-content-between">
+        <div class="d-flex justify-content-between">
+            <h5 class="card-title font-mono">{{$booking->user->name}}</h5>
             <div>
-                <span class="fw-bold">Status: </span>
-                <span @class(['badge rounded-pill','bg-success' => $booking->status==='accepted','bg-danger' => $booking->status==='rejected','bg-warning' => $booking->status==='pending'])>
+                <span @class(['badge rounded-pill','bg-success' => $booking->status==='accepted','bg-danger' => $booking->status==='rejected','bg-warning text-dark' => $booking->status==='pending'])>
                     @if($booking->status === 'pending')
                     Pendiente
                     @elseif($booking->status === 'accepted')
@@ -19,6 +13,12 @@
                     @endif
                 </span>
             </div>
+        </div>
+        <p class="card-text mb-0"><span class="fw-bold">Sala:</span> <span class="text-secondary">{{$booking->room->name}}</span></p>
+        <div class="mb-0 d-flex justify-content-between pt-4">
+            <p class=" mb-0 text-secondary">
+                {{ date('d M h:i A', strtotime($booking->start_date)) }}
+            </p>
             @role('admin')
             <button class="underline" data-bs-target="#update-status-{{$loop->index}}" data-bs-toggle="modal">Cambiar status</button>
             <x-bootstrap.modal id="update-status-{{$loop->index}}" title="Cambiar status" submit-btn-text="Guardar" form-id="status-form-{{$loop->index}}">

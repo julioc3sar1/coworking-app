@@ -63,7 +63,7 @@
                 </div>
             </div>
             @forelse ($bookings as $booking)
-            <div class="col-sm-6 mb-3">
+            <div class="col-sm-6 col-xl-4 mb-3">
                 @include('bookings.includes.booking')
             </div>
             @empty
