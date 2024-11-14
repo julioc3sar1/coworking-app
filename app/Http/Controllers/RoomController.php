@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RoomRequest;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Room;
@@ -20,23 +21,17 @@ class RoomController extends Controller
         return redirect()->route('rooms')->with('success', 'Has borrado la sala');
     }
 
-    public function store(Request $request){
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description'=>'required|string|max:255'
-        ]);
+    public function store(RoomRequest $request){
+        $validatedData = $request->validated();
 
         Room::create($validatedData);
 
         return redirect()->route('rooms')->with('success', 'Has creado una sala.');
     }
 
-    public function update(Request $request, Room $room)
+    public function update(RoomRequest $request, Room $room)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description'=>'required|string|max:255'
-        ]);
+        $request->validated();
 
         $room->name = $request->name;
         $room->description = $request->description;
