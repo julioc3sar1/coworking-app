@@ -31,6 +31,23 @@
                 </header>
             @endisset
 
+            @if ($errors->any())
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="alert alert-danger alert-dismissible fade show mb-0 my-3">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             <!-- Page Content -->
             <main class="py-4">
                 {{ $slot }}
