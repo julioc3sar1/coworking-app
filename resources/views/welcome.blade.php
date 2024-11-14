@@ -26,7 +26,7 @@
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                     <header class="grid justify-center items-center gap-2 lg:grid-cols-2">
                         <div class="lg:justify-center lg:col-start-2">
-                            <div class="text-center text-4xl lg:text-7xl tracking-wide font-mono text-gray-700">COWORKING</div>
+                            <div class="text-center text-4xl lg:text-7xl tracking-wide text-gray-700">COWORKING</div>
                         @if (Route::has('login'))
                             <nav class="-mx-3 flex flex-1 justify-center">
                                 @auth

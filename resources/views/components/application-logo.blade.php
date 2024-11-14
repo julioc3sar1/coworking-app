@@ -1,1 +1,1 @@
-<div class="text-center tracking-wide font-mono text-gray-700 {{$extraClasses ?? ''}}">COWORKING</div>
+<div class="text-center tracking-wide text-gray-700 {{$extraClasses ?? ''}}">COWORKING</div>
