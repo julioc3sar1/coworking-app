@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">{{$booking->user->name}}</h5>
+        <h5 class="card-title font-mono">{{$booking->user->name}}</h5>
         <p class="card-text mb-0"><span class="fw-bold">Sala:</span> {{$booking->room->name}}</p>
         <p class=" mb-0">
             <span class="fw-bold">Fecha: </span>
