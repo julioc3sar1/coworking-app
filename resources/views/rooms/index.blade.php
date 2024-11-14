@@ -17,15 +17,9 @@
             @endif
             <div class="col-12 mb-4">
                 <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                      <label for="inputPassword6" class="col-form-label">Buscar sala</label>
-                    </div>
-                    <div class="col-auto">
-                      <input type="text" id="inputSearch" class="form-control" aria-describedby="searchField">
-                    </div>
                     @role('admin')
                     <div class="col-auto ms-auto">
-                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#new-room">Nueva sala</button>
+                        <button type="button" class="btn fw-bold" data-bs-toggle="modal" data-bs-target="#new-room">Nueva sala</button>
                         <x-bootstrap.modal id="new-room" title="Sala" submit-btn-text="Guardar" form-id="room-form">
                             <form id="room-form" method="POST" x-bind:action="isEditing ? '{{url('rooms')}}/'+room.id : '{{route('rooms.store')}}'">
                                 <input type="hidden" name="_method" x-bind:value="isEditing ? 'PUT' : 'POST'">
