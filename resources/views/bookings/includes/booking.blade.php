@@ -1,7 +1,7 @@
 <div class="card border-light">
     <div class="card-body">
         <div class="d-flex justify-content-between">
-            <h5 class="card-title">{{$booking->user->name}}</h5>
+            <h5 class="card-title text-capitalize">{{$booking->user->name}}</h5>
             <div>
                 <span @class(['badge rounded-pill','bg-success' => $booking->status==='accepted','bg-danger' => $booking->status==='rejected','bg-warning text-dark' => $booking->status==='pending'])>
                     @if($booking->status === 'pending')
