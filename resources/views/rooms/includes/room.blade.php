@@ -3,12 +3,12 @@
     <h5 class="card-title font-mono">{{$room->name}}</h5>
     <p class="card-text">{{$room->description}}</p>
         @role('admin')
-        <div class="d-flex gap-2">
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#new-room" x-on:click="room=@js($room); isEditing = true">Editar</a>
+        <div class="d-flex gap-2 justify-content-end">
+            <button type="button" class="btn text-warning fw-bold" data-bs-toggle="modal" data-bs-target="#new-room" x-on:click="room=@js($room); isEditing = true">Editar</a>
             <form action="{{ route('rooms.destroy', $room) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button class="btn btn-light" type="submit">Eliminar</a>
+                <button class="btn fw-bold" type="submit">Eliminar</a>
             </form>
         </div>
         @else
